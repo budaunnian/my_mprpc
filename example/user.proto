@@ -1,0 +1,38 @@
+//在业务端定义序列化格式
+syntax = "proto3";
+
+package fixbug;
+
+//在使用service时，就需要定义opthion
+option cc_generic_services = true;
+
+//定义错误码
+message ResultCode
+{
+    int32 errcode  = 1;
+    bytes errmsg = 2;
+
+}
+
+//登录请求信息消息体
+message LoginRequest
+{
+    bytes name = 1;
+    bytes pwd =2;
+}
+
+//登录响应消息体
+message LoginResponse
+{
+    ResultCode result =1 ;
+    bool success =2;
+}
+
+//注册服务
+service UserServiceRpc
+{
+    rpc Login(LoginRequest) returns(LoginResponse);
+    
+}
+
+

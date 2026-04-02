@@ -1,0 +1,55 @@
+//定义序列化规则
+
+//第1，先声明版本
+syntax =  "proto3";
+
+//第2，声明代码所在的包，也就是命名空间
+package fixbug;
+
+//传给protobuf的数据格式，也就是请求
+
+//把冗余的代码鞋写在一个基类中
+message ResultCode
+{
+    int32 errcode = 1;//错误码
+    bytes  errmsg = 2;//错误信息
+}
+
+//string类型通常定义为bytes
+message LoginRequest
+{
+    bytes name = 1;//表示第一个字段
+    bytes pwd  = 2;//表示第二个字段
+}
+
+//消息往回发的反序列话格式，也就是响应消息体
+message LoginResponse
+{
+    ResultCode result = 1;
+    bool success = 2;
+}
+
+//-----------------------------存储列表---------------------------------
+message GetFriendListRequest
+{
+    uint32 userid = 1;
+}
+
+message User
+{
+    bytes name =1;
+    uint32 age = 2;
+    enum Sex //先进行枚举后在定义字段
+    {
+        MAN = 0;
+        WOMAN = 1;
+    }
+    Sex sex = 3;
+}
+
+message GetFriendListResponse
+{
+    ResultCode result = 1;
+    repeated User friedn_list =2;//调用repeated就是列表的意思 后面紧跟着重复的类型
+}
+
