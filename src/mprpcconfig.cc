@@ -65,7 +65,7 @@ std::string MprpcConfig::Load(std::string key)
 void MprpcConfig::Trim(std::string & src_buf)
 {
      //找出空格
-        int idx = src_buf.find_first_not_of(' ');
+        int idx =src_buf.find_first_not_of(' ');
         if(idx!=-1)
         {
             //找到了不是空格的位置
