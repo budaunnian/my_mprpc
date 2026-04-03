@@ -1,6 +1,8 @@
 #include <iostream>
 #include<string>
 #include "user.pb.h"
+#include "mprpcapplication.h"
+#include "rpcprovider.h"
 
 using namespace fixbug;
 
@@ -11,7 +13,7 @@ public:  //下面是本地服务
     {
         std::cout<<"正在进行本地服务: Login"<<std::endl;
         std::cout<<"name:"<<name<< " pwd:"<<pwd<<std::endl;
-
+        return true;
     }
 
     //重写基类UserServiceRpc的虚函数，让rps框架调用本地服务
@@ -31,12 +33,30 @@ public:  //下面是本地服务
         fixbug::ResultCode *code = response->mutable_result();
         code->set_errcode(0);
         code->set_errmsg("");
+        response->set_success(login_result);
+
+        //调用回调函数
+        done->Run();
     }
 
 };
 
-int main()
+int main(int argc,char **argv)
 {
+
+    
+    //进行rpc初始化操作
+    MprpcApplication::Init(argc,argv);
+
+    // provider是rpc提供的一个网络服务对象，将UserService对象发布到rpc节点上去
+    RpcProvider provider;
+    provider.NotifyService(new UserService());
+
+    //启动rpc服务发布节点，调用run()进程进入阻塞状态，等待远程rpc调用请求
+    provider.Run();
+
+
+
     return 0;
 }
 
