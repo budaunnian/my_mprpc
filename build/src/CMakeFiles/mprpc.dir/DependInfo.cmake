@@ -4,8 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/duan/my_rpc/my_mprpc/src/mprpcapplication.cc" "/home/duan/my_rpc/my_mprpc/build/src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o"
-  "/home/duan/my_rpc/my_mprpc/src/rpcprovider.cc" "/home/duan/my_rpc/my_mprpc/build/src/CMakeFiles/mprpc.dir/rpcprovider.cc.o"
+  "/home/buduan/ProJect/my_-mqrpc/src/mprpcapplication.cc" "/home/buduan/ProJect/my_-mqrpc/build/src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o"
+  "/home/buduan/ProJect/my_-mqrpc/src/mprpcconfig.cc" "/home/buduan/ProJect/my_-mqrpc/build/src/CMakeFiles/mprpc.dir/mprpcconfig.cc.o"
+  "/home/buduan/ProJect/my_-mqrpc/src/rpcprovider.cc" "/home/buduan/ProJect/my_-mqrpc/build/src/CMakeFiles/mprpc.dir/rpcprovider.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

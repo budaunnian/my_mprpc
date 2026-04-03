@@ -7,9 +7,13 @@
 #IncludeRegexTransform: 
 
 ../example/user.pb.h
+limits
+-
 string
 -
-google/protobuf/stubs/common.h
+google/protobuf/port_def.inc
+-
+google/protobuf/port_undef.inc
 -
 google/protobuf/io/coded_stream.h
 -
@@ -25,6 +29,8 @@ google/protobuf/inlined_string_field.h
 -
 google/protobuf/metadata.h
 -
+google/protobuf/generated_message_reflection.h
+-
 google/protobuf/message.h
 -
 google/protobuf/repeated_field.h
@@ -35,22 +41,34 @@ google/protobuf/service.h
 -
 google/protobuf/unknown_field_set.h
 -
+google/protobuf/port_def.inc
+-
+google/protobuf/port_undef.inc
+-
 
 ../src/include/mprpcapplication.h
+mprpcconfig.h
+../src/include/mprpcconfig.h
+
+../src/include/mprpcconfig.h
+unordered_map
+-
+string
+-
 
 ../src/include/rpcprovider.h
 google/protobuf/service.h
 ../src/include/google/protobuf/service.h
 
-/home/duan/my_rpc/my_mprpc/example/callee/userservice.cc
+/home/buduan/ProJect/my_-mqrpc/example/callee/userservice.cc
 iostream
 -
 string
 -
 user.pb.h
-/home/duan/my_rpc/my_mprpc/example/callee/user.pb.h
+/home/buduan/ProJect/my_-mqrpc/example/callee/user.pb.h
 mprpcapplication.h
-/home/duan/my_rpc/my_mprpc/example/callee/mprpcapplication.h
+/home/buduan/ProJect/my_-mqrpc/example/callee/mprpcapplication.h
 rpcprovider.h
-/home/duan/my_rpc/my_mprpc/example/callee/rpcprovider.h
+/home/buduan/ProJect/my_-mqrpc/example/callee/rpcprovider.h
 

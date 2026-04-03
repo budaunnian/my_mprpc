@@ -1,5 +1,7 @@
 #pragma once  //允许在头文件中重复定义
 
+#include "mprpcconfig.h"
+
 //构建mprpc框架的基类
 class MprpcApplication
 {
@@ -10,6 +12,7 @@ public:
 
 
 private:
+    static MprpcConfig m_config;
     MprpcApplication(){} //私有构造，禁止别人在类外创建对象
     MprpcApplication(const MprpcApplication&) = delete;//删除拷贝构造
     MprpcApplication(MprpcApplication&&) = delete;//删除移动构造
