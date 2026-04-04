@@ -3,6 +3,11 @@
 #include <muduo/net/TcpServer.h>
 #include <muduo/net/EventLoop.h>
 #include <muduo/net/InetAddress.h>
+#include <string>
+#include <functional> 
+#include <google/protobuf/descriptor.h>
+#include <unordered_map>
+
 
 
 //构建框架提供给外面使用的，可以发布rpc服务的网络对象类
@@ -17,8 +22,19 @@ public:
     void Run();
 
 private:
+    //muduo网络服务端
     //组合muduo网络库的epoll
     muduo::net::EventLoop * m_eventLoop;
+
+    //用一张表来存储服务对象和服务方法的映射关系
+    struct ServiceInfo
+    {
+        google::protobuf::Service *m_service; //存储服务对象
+        std::unordered_map<std::string,const google::protobuf::MethodDescriptor*> m_methodMap; //存储服务方法 方法名和方法描述对应
+    };
+    //再用一张表实现服务名和服务对象的映射关系
+    std::unordered_map<std::string,ServiceInfo> m_serviceMap;
+    
     //下面两个就是处理网络连接和消息读写的回调函数
     void OnConnection(const muduo::net::TcpConnectionPtr &conn);
     void OnMessage(const muduo::net::TcpConnectionPtr &conn,muduo::net::Buffer *buffer,muduo::Timestamp receiveTime);
