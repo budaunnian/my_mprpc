@@ -62,3 +62,8 @@ MprpcApplication &MprpcApplication::GetInstance() // 用static可以用类名调
     static MprpcApplication app;
     return app;
 }
+
+MprpcConfig& MprpcApplication::Getconfig()
+{
+    return m_config;
+}

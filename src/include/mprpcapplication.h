@@ -9,7 +9,7 @@ public:
 
     static void Init(int argc,char ** argv);//初始化
     static MprpcApplication& GetInstance(); //用static可以用类名调用函数，并且返回单例对象
-
+    static MprpcConfig& Getconfig();
 
 private:
     static MprpcConfig m_config;

@@ -6,15 +6,31 @@
 
 #IncludeRegexTransform: 
 
+../src/include/mprpcapplication.h
+mprpcconfig.h
+../src/include/mprpcconfig.h
+
 ../src/include/mprpcconfig.h
 unordered_map
 -
 string
 -
 
-/home/buduan/ProJect/my_-mqrpc/src/mprpcconfig.cc
-mprpcconfig.h
-/home/buduan/ProJect/my_-mqrpc/src/mprpcconfig.h
-iostream
+../src/include/rpcprovider.h
+google/protobuf/service.h
+../src/include/google/protobuf/service.h
+muduo/net/TcpServer.h
 -
+muduo/net/EventLoop.h
+-
+muduo/net/InetAddress.h
+-
+
+/home/buduan/ProJect/my_-mqrpc/src/rpcprovider.cc
+rpcprovider.h
+/home/buduan/ProJect/my_-mqrpc/src/rpcprovider.h
+string
+-
+mprpcapplication.h
+/home/buduan/ProJect/my_-mqrpc/src/mprpcapplication.h
 
