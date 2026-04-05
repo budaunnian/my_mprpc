@@ -5,15 +5,18 @@ src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o
  ../src/include/mprpcapplication.h
  ../src/include/mprpcconfig.h
  /home/buduan/ProJect/my_-mqrpc/src/mprpcapplication.cc
+src/CMakeFiles/mprpc.dir/mprpcchannel.cc.o
+ ../src/include/mprpcchannel.h
+ /home/buduan/ProJect/my_-mqrpc/src/mprpcchannel.cc
 src/CMakeFiles/mprpc.dir/mprpcconfig.cc.o
  ../src/include/mprpcconfig.h
  /home/buduan/ProJect/my_-mqrpc/src/mprpcconfig.cc
 src/CMakeFiles/mprpc.dir/rpcheader.pb.cc.o
+ ../src/include/rpcheader.pb.h
  /home/buduan/ProJect/my_-mqrpc/src/rpcheader.pb.cc
- /home/buduan/ProJect/my_-mqrpc/src/rpcheader.pb.h
 src/CMakeFiles/mprpc.dir/rpcprovider.cc.o
  ../src/include/mprpcapplication.h
  ../src/include/mprpcconfig.h
+ ../src/include/rpcheader.pb.h
  ../src/include/rpcprovider.h
- /home/buduan/ProJect/my_-mqrpc/src/rpcheader.pb.h
  /home/buduan/ProJect/my_-mqrpc/src/rpcprovider.cc

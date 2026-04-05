@@ -122,5 +122,59 @@ void RpcProvider::OnMessage(const muduo::net::TcpConnectionPtr &conn,
     std::cout<<"参数字符串: "<<args_str<<std::endl;
     std::cout<<"=================================================="<<std::endl; 
     
+    /*接下来就是实现远程调用rpc本地的具体方法*/
+
+    //第一步：获取service对象
+    auto it = m_serviceMap.find(service_name);
+    if(it == m_serviceMap.end() )
+    {
+        std::cout<<"没有找到对应的服务: "<<service_name<<std::endl;
+        return;     
+    }
+    //第二步：获取method对象
+    auto mit = it->second.m_methodMap.find(method_name);
+    if(mit == it->second.m_methodMap.end())
+    {
+        std::cout<<"没有找到对应的方法: "<<method_name<<std::endl;
+        return;     
+    }
+
+    //第三步：获取service对象和method对象调用方法
+    google::protobuf::Service *service = it->second.m_service;
+    const google::protobuf::MethodDescriptor *method = mit->second; 
+
+    //第四步：生成请求request和响应response对象
+    google::protobuf::Message *request = service->GetRequestPrototype(method).New();
+    google::protobuf::Message *response = service->GetResponsePrototype(method).New();  
+
+    //第五步：将args_str反序列化到request对象中
+    if(!request->ParseFromString(args_str))
+    {
+        std::cout<<"request反序列化失败!"<<std::endl;
+        return;
+    }
+
+    //第六步：给rpc请求的第四个参数绑定一个回调 用于进行网络发送给和序列化数据
+    google::protobuf::Closure *done = google::protobuf::NewCallback<RpcProvider,const muduo::net::TcpConnectionPtr&,google::protobuf::Message*>(this,&RpcProvider::SendRpcResponse,conn,response);
+
+    //第七步：调用一个具体的本地方法
+    service->CallMethod(method,nullptr,request,response,done);
+
 
 }
+
+ // 用于Closure回调操作，实现序列化rpc响应和网络发送
+void RpcProvider::SendRpcResponse(const muduo::net::TcpConnectionPtr &conn,google::protobuf::Message *response)
+{
+    std::string response_str;
+    if(response->SerializeToString(&response_str))
+    {
+        conn->send(response_str);
+    }
+    else{
+        std::cout<<"response序列化失败!"<<std::endl;
+    }
+    conn->shutdown(); //一次rpc调用完成，断开连接
+
+}
+    
