@@ -11,7 +11,6 @@ message ResultCode
 {
     int32 errcode  = 1;
     bytes errmsg = 2;
-
 }
 
 //登录请求信息消息体
@@ -28,11 +27,73 @@ message LoginResponse
     bool success =2;
 }
 
-//注册服务
+//注册服务请求
+message RegisterRequest
+{
+    uint32 id = 1;
+    bytes name =2;
+    bytes pwd = 3;
+}
+
+//注册服务响应
+message RegisterResponse
+{
+    ResultCode result = 1;
+    bool success =2;
+}
+
+// ==================== 新增功能 ====================
+// 获取用户信息 请求
+message GetUserInfoRequest {
+    uint32 userid = 1;
+}
+
+// 用户信息结构
+message UserInfo {
+    uint32 id = 1;
+    bytes name = 2;
+}
+
+// 获取用户信息 响应
+message GetUserInfoResponse {
+    ResultCode result = 1;
+    UserInfo userinfo = 2;
+}
+
+// 退出登录 请求
+message LogoutRequest {
+    uint32 userid = 1;
+}
+
+// 退出登录 响应
+message LogoutResponse {
+    ResultCode result = 1;
+    bool success = 2;
+}
+
+// 获取用户列表请求
+message GetUserListRequest {
+    uint32 page = 1;    // 页码
+    uint32 limit = 2;   // 每页数量
+}
+
+// 获取用户列表响应
+message GetUserListResponse {
+    ResultCode result = 1;
+    repeated UserInfo userlist = 2;  // 列表
+}
+
+// ==================== 注册服务 ====================
 service UserServiceRpc
 {
+    // 原有
     rpc Login(LoginRequest) returns(LoginResponse);
-    
+    rpc Register(RegisterRequest) returns(RegisterResponse);
+
+    // 新增
+    rpc GetUserInfo(GetUserInfoRequest) returns (GetUserInfoResponse);
+    rpc Logout(LogoutRequest) returns (LogoutResponse);
+    rpc GetUserList(GetUserListRequest) returns (GetUserListResponse);
 }
 
 

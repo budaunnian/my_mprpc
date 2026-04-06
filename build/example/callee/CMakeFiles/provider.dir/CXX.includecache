@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-../example/user.pb.h
+../example/friend.pb.h
 limits
 -
 string
@@ -74,15 +74,17 @@ google/protobuf/descriptor.h
 unordered_map
 -
 
-/home/buduan/ProJect/my_-mqrpc/example/callee/userservice.cc
+/home/buduan/ProJect/my_-mqrpc/example/callee/friendservice.cc
 iostream
 -
 string
 -
-user.pb.h
-/home/buduan/ProJect/my_-mqrpc/example/callee/user.pb.h
+friend.pb.h
+/home/buduan/ProJect/my_-mqrpc/example/callee/friend.pb.h
 mprpcapplication.h
 /home/buduan/ProJect/my_-mqrpc/example/callee/mprpcapplication.h
 rpcprovider.h
 /home/buduan/ProJect/my_-mqrpc/example/callee/rpcprovider.h
+vector
+-
 
