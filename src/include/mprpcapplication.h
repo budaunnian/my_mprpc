@@ -1,6 +1,9 @@
 #pragma once  //允许在头文件中重复定义
 
 #include "mprpcconfig.h"
+#include "mprpcchannel.h"
+#include "mprpccontroller.h"
+
 
 //构建mprpc框架的基类
 class MprpcApplication

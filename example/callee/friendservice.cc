@@ -4,6 +4,7 @@
 #include "mprpcapplication.h"
 #include "rpcprovider.h"
 #include <vector>
+#include "logger.h"
 
 using namespace fixbug;
 
@@ -49,7 +50,9 @@ public:  //下面是本地服务
 
 int main(int argc,char **argv)
 {
-
+    //测试日志系统
+    LOG_INFO("第一次日志信息！！");
+    LOG_ERR("%s:%s:%d",__FILE__,__FUNCTION__,__LINE__);
     
     //进行rpc初始化操作
     MprpcApplication::Init(argc,argv);

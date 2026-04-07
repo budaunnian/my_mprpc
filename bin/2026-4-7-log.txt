@@ -1,0 +1,2 @@
+18:3:21 => 第一次日志信息！！
+18:3:21 => /home/duan/my_rpc/my_mprpc/example/callee/friendservice.cc:main:55
