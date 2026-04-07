@@ -2,6 +2,23 @@
 cmake_minimum_required(VERSION 3.15)
 project(my_mprps)
 
+#自动更新protobuf文件
+# ===================== Protobuf 自动生成 =====================
+find_package(Protobuf REQUIRED)
+include_directories(${Protobuf_INCLUDE_DIRS})
+
+# 自动生成 src/rpcheader.proto
+execute_process(
+    COMMAND protoc --cpp_out=${PROJECT_SOURCE_DIR}/src ${PROJECT_SOURCE_DIR}/src/rpcheader.proto
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)
+
+# 自动生成 example/friend.proto
+execute_process(
+    COMMAND protoc --cpp_out=${PROJECT_SOURCE_DIR}/example ${PROJECT_SOURCE_DIR}/example/friend.proto
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+)
+
 #设置可执行文件的输出路径  ${PROJECT_SOURCE_DIR}cmake文件所在的路径
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 
