@@ -1,2 +1,4 @@
 18:3:21 => 第一次日志信息！！
 18:3:21 => /home/duan/my_rpc/my_mprpc/example/callee/friendservice.cc:main:55
+19:11:2 => 第一次日志信息！！
+19:11:2 => /home/buduan/ProJect/my_-mqrpc/example/callee/friendservice.cc:main:55
