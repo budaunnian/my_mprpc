@@ -7,9 +7,13 @@
 #IncludeRegexTransform: 
 
 ../example/friend.pb.h
+limits
+-
 string
 -
-google/protobuf/stubs/common.h
+google/protobuf/port_def.inc
+-
+google/protobuf/port_undef.inc
 -
 google/protobuf/io/coded_stream.h
 -
@@ -25,6 +29,8 @@ google/protobuf/inlined_string_field.h
 -
 google/protobuf/metadata.h
 -
+google/protobuf/generated_message_reflection.h
+-
 google/protobuf/message.h
 -
 google/protobuf/repeated_field.h
@@ -34,6 +40,10 @@ google/protobuf/extension_set.h
 google/protobuf/service.h
 -
 google/protobuf/unknown_field_set.h
+-
+google/protobuf/port_def.inc
+-
+google/protobuf/port_undef.inc
 -
 
 ../src/include/mprpcapplication.h
@@ -64,26 +74,24 @@ google/protobuf/service.h
 string
 -
 
-/home/duan/my_rpc/my_mprpc/example/caller/callfriendservice.cc
+/home/buduan/ProJect/my_-mqrpc/example/caller/callfriendservice.cc
 iostream
 -
 friend.pb.h
-/home/duan/my_rpc/my_mprpc/example/caller/friend.pb.h
+/home/buduan/ProJect/my_-mqrpc/example/caller/friend.pb.h
 mprpcapplication.h
-/home/duan/my_rpc/my_mprpc/example/caller/mprpcapplication.h
+/home/buduan/ProJect/my_-mqrpc/example/caller/mprpcapplication.h
 
-/home/duan/my_rpc/my_mprpc/example/friend.pb.cc
+/home/buduan/ProJect/my_-mqrpc/example/friend.pb.cc
 friend.pb.h
-/home/duan/my_rpc/my_mprpc/example/friend.pb.h
+/home/buduan/ProJect/my_-mqrpc/example/friend.pb.h
 algorithm
--
-google/protobuf/stubs/common.h
--
-google/protobuf/stubs/port.h
 -
 google/protobuf/io/coded_stream.h
 -
-google/protobuf/wire_format_lite_inl.h
+google/protobuf/extension_set.h
+-
+google/protobuf/wire_format_lite.h
 -
 google/protobuf/descriptor.h
 -
@@ -93,13 +101,19 @@ google/protobuf/reflection_ops.h
 -
 google/protobuf/wire_format.h
 -
-third_party/protobuf/version.h
-/home/duan/my_rpc/my_mprpc/example/third_party/protobuf/version.h
+google/protobuf/port_def.inc
+-
+google/protobuf/port_undef.inc
+-
 
-/home/duan/my_rpc/my_mprpc/example/friend.pb.h
+/home/buduan/ProJect/my_-mqrpc/example/friend.pb.h
+limits
+-
 string
 -
-google/protobuf/stubs/common.h
+google/protobuf/port_def.inc
+-
+google/protobuf/port_undef.inc
 -
 google/protobuf/io/coded_stream.h
 -
@@ -115,6 +129,8 @@ google/protobuf/inlined_string_field.h
 -
 google/protobuf/metadata.h
 -
+google/protobuf/generated_message_reflection.h
+-
 google/protobuf/message.h
 -
 google/protobuf/repeated_field.h
@@ -124,5 +140,9 @@ google/protobuf/extension_set.h
 google/protobuf/service.h
 -
 google/protobuf/unknown_field_set.h
+-
+google/protobuf/port_def.inc
+-
+google/protobuf/port_undef.inc
 -
 

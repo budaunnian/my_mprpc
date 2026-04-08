@@ -15,3 +15,6 @@
 17:51:19 =>[info] 服务名字: FriendServiceRpc
 17:51:19 =>[info] 方法1: GetFriendsList
 17:51:19 =>[info] RpcProvider开始服务: ip: 127.0.0.1,port: 8889
+20:3:35 =>[info] 服务名字: FriendServiceRpc
+20:3:35 =>[info] 方法1: GetFriendsList
+20:3:35 =>[info] RpcProvider开始服务: ip: 127.0.0.1,port: 8889
