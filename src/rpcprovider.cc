@@ -1,6 +1,8 @@
 #include "rpcprovider.h"
 #include "mprpcapplication.h"
 #include "rpcheader.pb.h"
+#include "logger.h"
+#include "zookeeperutil.h"
 // std::bind需要这个头文件    
 
 
@@ -18,7 +20,8 @@ void RpcProvider::NotifyService(google::protobuf::Service *service)
     int methodCnt = pserviceDesc->method_count();
 
     //打印日志：输出服务名字
-    std::cout<<"服务名字: "<<service_name<<std::endl;
+    // std::cout<<"服务名字: "<<service_name<<std::endl;
+    LOG_INFO("服务名字: %s",service_name.c_str());
 
     for(int i=0;i<methodCnt;i++)
     {
@@ -26,7 +29,8 @@ void RpcProvider::NotifyService(google::protobuf::Service *service)
         const google::protobuf::MethodDescriptor *pmethodDesc = pserviceDesc->method(i);
         std::string method_name = pmethodDesc->name();
         //打印日志：输出服务方法名字
-        std::cout<<"方法"<<i+1<<": "<<method_name<<std::endl;
+        // std::cout<<"方法"<<i+1<<": "<<method_name<<std::endl;
+        LOG_INFO("方法%d: %s",i+1,method_name.c_str());
         //将方法名字和方法描述存入表中
         service_info.m_methodMap.insert({method_name,pmethodDesc});
     }
@@ -56,9 +60,28 @@ void RpcProvider::Run()
     //设置muduo库的线程数量，muduo库会自己分配I/O线程和worker线程
     server.setThreadNum(4);
 
-    //打印日志，输出当前rpc服务节点的信息
-    std::cout<<"RpcProvider开始服务: ip: "<<ip<<" port: "<<port<<std::endl;
+    
+    //将rpc节点上的服务存储到zk上面，让rpc client可以从zk上发现
+    ZkClient zkCli;
+    zkCli.Start();
+    for(auto &sp : m_serviceMap)
+    {
+        std::string service_path = "/"+sp.first;
+        zkCli.Create(service_path.c_str(),nullptr,0,0);
+        for(auto &mp : sp.second.m_methodMap)
+        {
+            std::string method_path = service_path + "/" + mp.first;
+            char method_path_data[128] = {0};
+            sprintf(method_path_data,"%s:%d",ip.c_str(),port);
+            zkCli.Create(method_path.c_str(),method_path_data,strlen(method_path_data),ZOO_EPHEMERAL);
+            //std::cout << "创建子节点：" << method_path << std::endl;
+        }   
+    }
 
+
+    //打印日志，输出当前rpc服务节点的信息
+    // std::cout<<"RpcProvider开始服务: ip: "<<ip<<" port: "<<port<<std::endl;
+    LOG_INFO("RpcProvider开始服务: ip: %s,port: %d",ip.c_str(),port);
     //接下来就开启动服务阻塞监听了
     server.start();
     m_eventLoop->loop();

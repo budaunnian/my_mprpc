@@ -4,18 +4,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/buduan/ProJect/my_-mqrpc/src/logger.cc" "/home/buduan/ProJect/my_-mqrpc/build/src/CMakeFiles/mprpc.dir/logger.cc.o"
-  "/home/buduan/ProJect/my_-mqrpc/src/mprpcapplication.cc" "/home/buduan/ProJect/my_-mqrpc/build/src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o"
-  "/home/buduan/ProJect/my_-mqrpc/src/mprpcchannel.cc" "/home/buduan/ProJect/my_-mqrpc/build/src/CMakeFiles/mprpc.dir/mprpcchannel.cc.o"
-  "/home/buduan/ProJect/my_-mqrpc/src/mprpcconfig.cc" "/home/buduan/ProJect/my_-mqrpc/build/src/CMakeFiles/mprpc.dir/mprpcconfig.cc.o"
-  "/home/buduan/ProJect/my_-mqrpc/src/mprpccontroller.cc" "/home/buduan/ProJect/my_-mqrpc/build/src/CMakeFiles/mprpc.dir/mprpccontroller.cc.o"
-  "/home/buduan/ProJect/my_-mqrpc/src/rpcheader.pb.cc" "/home/buduan/ProJect/my_-mqrpc/build/src/CMakeFiles/mprpc.dir/rpcheader.pb.cc.o"
-  "/home/buduan/ProJect/my_-mqrpc/src/rpcprovider.cc" "/home/buduan/ProJect/my_-mqrpc/build/src/CMakeFiles/mprpc.dir/rpcprovider.cc.o"
+  "/home/duan/my_rpc/my_mprpc/src/logger.cc" "/home/duan/my_rpc/my_mprpc/build/src/CMakeFiles/mprpc.dir/logger.cc.o"
+  "/home/duan/my_rpc/my_mprpc/src/mprpcapplication.cc" "/home/duan/my_rpc/my_mprpc/build/src/CMakeFiles/mprpc.dir/mprpcapplication.cc.o"
+  "/home/duan/my_rpc/my_mprpc/src/mprpcchannel.cc" "/home/duan/my_rpc/my_mprpc/build/src/CMakeFiles/mprpc.dir/mprpcchannel.cc.o"
+  "/home/duan/my_rpc/my_mprpc/src/mprpcconfig.cc" "/home/duan/my_rpc/my_mprpc/build/src/CMakeFiles/mprpc.dir/mprpcconfig.cc.o"
+  "/home/duan/my_rpc/my_mprpc/src/mprpccontroller.cc" "/home/duan/my_rpc/my_mprpc/build/src/CMakeFiles/mprpc.dir/mprpccontroller.cc.o"
+  "/home/duan/my_rpc/my_mprpc/src/rpcheader.pb.cc" "/home/duan/my_rpc/my_mprpc/build/src/CMakeFiles/mprpc.dir/rpcheader.pb.cc.o"
+  "/home/duan/my_rpc/my_mprpc/src/rpcprovider.cc" "/home/duan/my_rpc/my_mprpc/build/src/CMakeFiles/mprpc.dir/rpcprovider.cc.o"
+  "/home/duan/my_rpc/my_mprpc/src/zookeeperutil.cc" "/home/duan/my_rpc/my_mprpc/build/src/CMakeFiles/mprpc.dir/zookeeperutil.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../src"
   "../src/include"
   "../example"
   )

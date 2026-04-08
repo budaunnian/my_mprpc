@@ -4,20 +4,21 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/buduan/ProJect/my_-mqrpc/example/friend.pb.cc" "/home/buduan/ProJect/my_-mqrpc/build/example/caller/CMakeFiles/consumer.dir/__/friend.pb.cc.o"
-  "/home/buduan/ProJect/my_-mqrpc/example/caller/callfriendservice.cc" "/home/buduan/ProJect/my_-mqrpc/build/example/caller/CMakeFiles/consumer.dir/callfriendservice.cc.o"
+  "/home/duan/my_rpc/my_mprpc/example/friend.pb.cc" "/home/duan/my_rpc/my_mprpc/build/example/caller/CMakeFiles/consumer.dir/__/friend.pb.cc.o"
+  "/home/duan/my_rpc/my_mprpc/example/caller/callfriendservice.cc" "/home/duan/my_rpc/my_mprpc/build/example/caller/CMakeFiles/consumer.dir/callfriendservice.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "../src"
   "../src/include"
   "../example"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/buduan/ProJect/my_-mqrpc/build/src/CMakeFiles/mprpc.dir/DependInfo.cmake"
+  "/home/duan/my_rpc/my_mprpc/build/src/CMakeFiles/mprpc.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

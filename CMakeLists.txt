@@ -2,22 +2,47 @@
 cmake_minimum_required(VERSION 3.15)
 project(my_mprps)
 
-#自动更新protobuf文件
 # ===================== Protobuf 自动生成 =====================
+
+# 1. 强制查找 Protobuf
 find_package(Protobuf REQUIRED)
+if(NOT Protobuf_FOUND)
+    message(FATAL_ERROR "Protobuf not found! Please install it first.")
+endif()
+
+message(STATUS "Protobuf include dir: ${Protobuf_INCLUDE_DIRS}")
+message(STATUS "Protobuf libraries: ${Protobuf_LIBRARIES}")
+
+# 2. 包含头文件路径
 include_directories(${Protobuf_INCLUDE_DIRS})
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
-# 自动生成 src/rpcheader.proto
+# 3. 自动生成代码（修复版：加上 -I 参数）
+# 生成 src/rpcheader.pb.h/cc
 execute_process(
-    COMMAND protoc --cpp_out=${PROJECT_SOURCE_DIR}/src ${PROJECT_SOURCE_DIR}/src/rpcheader.proto
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    COMMAND ${Protobuf_PROTOC_EXECUTABLE}
+        -I ${PROJECT_SOURCE_DIR}/src          # 🔴 关键修复：指定 .proto 搜索路径
+        --cpp_out=${PROJECT_SOURCE_DIR}/src
+        rpcheader.proto                        # 🔴 这里用相对路径（配合 -I）
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/src
+    RESULT_VARIABLE PROTOC_RESULT
 )
+if(NOT PROTOC_RESULT EQUAL 0)
+    message(FATAL_ERROR "Failed to generate rpcheader.pb.h/cc!")
+endif()
 
-# 自动生成 example/friend.proto
+# 生成 example/friend.pb.h/cc
 execute_process(
-    COMMAND protoc --cpp_out=${PROJECT_SOURCE_DIR}/example ${PROJECT_SOURCE_DIR}/example/friend.proto
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+    COMMAND ${Protobuf_PROTOC_EXECUTABLE}
+        -I ${PROJECT_SOURCE_DIR}/example      # 🔴 关键修复：指定 .proto 搜索路径
+        --cpp_out=${PROJECT_SOURCE_DIR}/example
+        friend.proto                           # 🔴 这里用相对路径
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/example
+    RESULT_VARIABLE PROTOC_RESULT
 )
+if(NOT PROTOC_RESULT EQUAL 0)
+    message(FATAL_ERROR "Failed to generate friend.pb.h/cc!")
+endif()
 
 #设置可执行文件的输出路径  ${PROJECT_SOURCE_DIR}cmake文件所在的路径
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)

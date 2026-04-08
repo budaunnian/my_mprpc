@@ -8,6 +8,7 @@
 #include <unistd.h> //close()函数需要这个头文件
 #include <netinet/in.h>  // 正确（Linux网络编程头文件）
 #include <errno.h>
+#include"zookeeperutil.h"
 
 
 //所有通过调用rpc方法都在这个函数中进行数据序列化和网络发送
@@ -61,14 +62,6 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor *method,
     send_rpc_str += rpc_header_str;//请求头
     send_rpc_str += args_str;//请求头+参数
 
-     //接下来打印日志，输出服务名字和方法名字
-    std::cout<<"=================================================="<<std::endl; 
-    std::cout<<"文件头大小: "<<header_size<<std::endl; 
-    std::cout<<"文件头字符串: "<<rpc_header_str<<std::endl;
-    std::cout<<"服务名字: "<<service_name<<std::endl;
-    std::cout<<"方法名字: "<<method_name<<std::endl;    
-    std::cout<<"参数字符串: "<<args_str<<std::endl;
-    std::cout<<"=================================================="<<std::endl; 
     
     //使用tcp连接进行数据发送
     int clientfd = socket(AF_INET,SOCK_STREAM,0);//创建socket文件描述符
@@ -80,9 +73,37 @@ void MprpcChannel::CallMethod(const google::protobuf::MethodDescriptor *method,
     }
 
     //获取rpc服务的ip和端口号
-    std::string ip = MprpcApplication::GetInstance().Getconfig().Load("rpcserviceip");
-    uint16_t port = atoi(MprpcApplication::GetInstance().Getconfig().Load("rpcserviceport").c_str());
+    // std::string ip = MprpcApplication::GetInstance().Getconfig().Load("rpcserviceip");
+    // uint16_t port = atoi(MprpcApplication::GetInstance().Getconfig().Load("rpcserviceport").c_str());
 
+    //从zk中获取服务界节点的IP和port
+    ZkClient zkCli;
+    zkCli.Start();
+    std::string methon_path = "/" + service_name + "/" + method_name;
+    std::string host_data = zkCli.GetData(methon_path.c_str());
+    if(host_data == "")
+    {
+        controller->SetFailed(methon_path+ "不存在！");
+        return;
+    }
+    int idx = host_data.find(":");
+    if(idx==-1)
+    {
+        controller->SetFailed(methon_path+"地址无效！");
+        return ;
+    }
+    std::string ip  = host_data.substr(0,idx);
+    uint16_t port = atoi(host_data.substr(idx+1,host_data.size()-idx).c_str());
+
+    
+     //接下来打印日志，输出服务名字和方法名字
+    std::cout<<"=================================================="<<std::endl; 
+    std::cout<<"文件头大小: "<<header_size<<std::endl; 
+    std::cout<<"文件头字符串: "<<rpc_header_str<<std::endl;
+    std::cout<<"服务名字: "<<service_name<<std::endl;
+    std::cout<<"方法名字: "<<method_name<<std::endl;    
+    std::cout<<"参数字符串: "<<args_str<<std::endl;
+    std::cout<<"=================================================="<<std::endl; 
     //连接rpc服务端
     struct sockaddr_in server_addr;
     server_addr.sin_family = AF_INET;

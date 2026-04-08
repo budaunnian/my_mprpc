@@ -1,0 +1,17 @@
+9:45:58 => 第一次日志信息！！
+9:45:58 => /home/duan/my_rpc/my_mprpc/example/callee/friendservice.cc:main:55
+15:58:30 =>[info] 服务名字: FriendServiceRpc
+15:58:30 =>[info] 方法1: GetFriendsList
+15:58:30 =>[info] RpcProvider开始服务: ip: 127.0.0.1,port: 8889
+16:0:54 =>[info] 服务名字: FriendServiceRpc
+16:0:54 =>[info] 方法1: GetFriendsList
+16:0:54 =>[info] RpcProvider开始服务: ip: 127.0.0.1,port: 8889
+16:11:18 =>[info] 服务名字: FriendServiceRpc
+16:11:18 =>[info] 方法1: GetFriendsList
+16:11:18 =>[info] RpcProvider开始服务: ip: 127.0.0.1,port: 8889
+17:44:37 =>[info] 服务名字: FriendServiceRpc
+17:44:37 =>[info] 方法1: GetFriendsList
+17:44:37 =>[info] RpcProvider开始服务: ip: 127.0.0.1,port: 8889
+17:51:19 =>[info] 服务名字: FriendServiceRpc
+17:51:19 =>[info] 方法1: GetFriendsList
+17:51:19 =>[info] RpcProvider开始服务: ip: 127.0.0.1,port: 8889
